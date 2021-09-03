@@ -1,0 +1,305 @@
+  
+package ViralIT;
+
+import java.awt.Dimension;
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.imageio.ImageIO;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeDriverService;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.apache.commons.io.FileUtils; // FileUtils thực hiện các chức năng đọc, ghi, copy, so sánh file 
+import org.openqa.selenium.OutputType; // Thực hiện capture screenshot và lưu trữ tại nơi chỉ định
+import org.openqa.selenium.TakesScreenshot; // Thực hiện capture screenshot và lưu trữ tại nơi chỉ định
+import ru.yandex.qatools.ashot.shooting.ShootingStrategies;
+
+public class ogame_upgrade {
+	
+	
+	public static void main(String[] args) throws InterruptedException {
+		
+		int dem = 0;
+		while (dem != -1) {
+		Thread.sleep(10000);
+		// Open Browser
+		System.setProperty("webdriver.chrome.driver", "D:\\cuong_test\\chromedriver2.exe");
+	    ChromeOptions chromeProfile = new ChromeOptions();
+	    String chromeProfilePath = "C:/Users/Admin/AppData/Local/Google/Chrome/User Data/Profile 1";
+	    System.out.print(chromeProfilePath);
+	    // set chrome as Headless
+	    //chromeProfile.setHeadless(true);
+	    chromeProfile.addArguments("start-maximized");
+	   // chromeProfile.addArguments("--headless");
+	    chromeProfile.addArguments("--window-size=1920,1080");
+	    chromeProfile.addArguments("chrome.switches", "--disable-extensions");
+	    chromeProfile.addArguments("user-data-dir=" + chromeProfilePath);
+	    WebDriver map = new ChromeDriver(chromeProfile);
+		
+	    // In game 
+	    map.get("https://s123-hr.ogame.gameforge.com/game/index.php?page=ingame&component=supplies");
+	    
+		Thread.sleep(10000);
+		map.findElement(By .xpath("//*[@id=\"joinGame\"]/button")).click();
+		Thread.sleep(5000);
+		
+		boolean i = true;
+		
+		// Get information    
+		map.get("https://s123-hr.ogame.gameforge.com/game/index.php?page=ingame&component=supplies");
+		Thread.sleep(5000);
+		ArrayList<String> tabs2 = new ArrayList<String> (map.getWindowHandles());
+	    map.switchTo().window(tabs2.get(1));
+	    map.close();
+	    map.switchTo().window(tabs2.get(0));    
+	    Thread.sleep(5000);
+	    int cuong = 1;
+	    
+	    while (cuong == 1 ) {
+	    while (i) {
+	    	if (dem ==5 ) {
+	    		dem = 0;
+	    	};
+	    	if (dem ==0 ) {
+	    			
+	    			
+	    			// System.out.println("earth 1");
+	    			map.get("https://s123-hr.ogame.gameforge.com/game/index.php?page=ingame&component=fleetdispatch&mission=15&position=16&type=1&galaxy=1&system=42&type=1");
+
+	    		    String check = "Ekspedicije: 5/5";
+	    			String check2 = map.findElement(By .xpath("//*[@id=\"slots\"]/div[2]/span")).getText();
+	    			if (!check2.contains(check)) {
+	    				map.findElement(By .xpath("//*[@id=\"civil\"]/li[2]/input")).sendKeys("100");
+	    				map.findElement(By .xpath("//*[@id=\"military\"]/li[1]/span")).click();
+	    				map.findElement(By .xpath("//*[@id=\"military\"]/li[2]/span")).click();
+	    				map.findElement(By .xpath("//*[@id=\"military\"]/li[3]/span")).click();
+	    				map.findElement(By .xpath("//*[@id=\"military\"]/li[10]/span")).click();
+	    				map.findElement(By .xpath("//*[@id=\"civil\"]/li[5]/span")).click();
+	    				map.findElement(By .xpath("//*[@id=\"military\"]/li[4]/span")).click();
+	    				
+	    				Thread.sleep(3000);
+	    				map.findElement(By .xpath("//*[@id=\"continueToFleet2\"]")).click();
+	    				Thread.sleep(3000);
+	    				map.findElement(By .xpath("//*[@id=\"sendFleet\"]")).click();
+	    				System.out.print("Send success");
+	    			};
+	    			
+	    			Thread.sleep(10000);
+	    			
+	    			map.get("https://s123-hr.ogame.gameforge.com/game/index.php?page=highscore&cp=33620800");
+	    			map.get("https://s123-hr.ogame.gameforge.com/game/index.php?page=ingame&component=supplies");
+	    	    };
+	    	    if (dem == 1 ) {
+	    			map.get("https://s123-hr.ogame.gameforge.com/game/index.php?page=ingame&component=overview&cp=33621019");
+	    			map.get("https://s123-hr.ogame.gameforge.com/game/index.php?page=ingame&component=supplies");
+	    			// System.out.println("earth 2");
+	    		};
+	    		if (dem == 2 ) {
+	    			map.get("https://s123-hr.ogame.gameforge.com/game/index.php?page=ingame&component=supplies&cp=33621062");
+	    			map.get("https://s123-hr.ogame.gameforge.com/game/index.php?page=ingame&component=supplies");
+	    			// System.out.println("earth 3");
+	    		};
+	    		if (dem == 3 ) {
+	    			map.get("https://s123-hr.ogame.gameforge.com/game/index.php?page=ingame&component=supplies&cp=33621128");
+	    			map.get("https://s123-hr.ogame.gameforge.com/game/index.php?page=ingame&component=supplies");
+	    			// System.out.println("earth 4");
+	    		};
+	    		if (dem == 4 ) {
+	    			map.get("https://s123-hr.ogame.gameforge.com/game/index.php?page=highscore&cp=33620800");
+	    			map.get("https://s123-hr.ogame.gameforge.com/game/index.php?page=ingame&component=supplies");
+	    			// System.out.println("earth 5");
+	    		};
+	    	    	dem ++;
+	    	   
+			Thread.sleep(10000);
+			
+			//WebElement metal = map.findElement(By .id("resources_metal"));
+			//WebElement crystal = map.findElement(By .id("resources_crystal"));
+			WebElement energy = map.findElement(By .id("resources_energy"));
+			WebElement metal_level = map.findElement(By .xpath("//*[@id=\"producers\"]/li[1]/span/span/span[1]"));
+			WebElement crystal_level = map.findElement(By .xpath("//*[@id=\"producers\"]/li[2]/span/span/span[1]"));
+			WebElement deu_level = map.findElement(By .xpath("//*[@id=\"producers\"]/li[3]/span/span/span[1]"));
+			int metal1 = Integer.valueOf(metal_level.getText());
+			// System.out.print(" metal "+metal1);
+			int crystal1 = Integer.valueOf(crystal_level.getText());
+			// System.out.print(" crystal "+ crystal1);
+			int deu1 = Integer.valueOf(deu_level.getText());
+			// System.out.print(" deuterium "+ deu1);
+			int energy1 = Integer.valueOf(energy.getText());
+			// System.out.println(" energy "+ energy1);
+			Thread.sleep(10000);
+			
+			if (map.findElements(By .id("buildingCountdown")).size()==0) {
+				
+				
+				
+		    // Check energy
+		    if (energy1 < 0 ) {
+		    	if (map.findElements(By .xpath("//*[@id=\"producers\"]/li[4]/span/button")).size()!=0) {
+		    		map.findElement(By .xpath("//*[@id=\"producers\"]/li[4]/span/button")).click();
+		 
+		    		
+		    		System.out.print("EARTH" +dem);
+		    		System.out.print(" metal "+metal1);
+					System.out.print(" crystal "+ crystal1);
+					System.out.print(" deuterium "+ deu1);
+					System.out.print(" energy "+ energy1);
+					System.out.println("upgrade energy");
+					
+					break;
+		    	};
+		    	if (map.findElements(By .xpath("//*[@id=\"producers\"]/li[5]/span/button")).size()!=0) {
+		    		map.findElement(By .xpath("//*[@id=\"producers\"]/li[5]/span/button")).click();
+		 
+		    		 	
+		    		System.out.print("EARTH" +dem);
+		    		System.out.print(" metal "+metal1);
+					System.out.print(" crystal "+ crystal1);
+					System.out.print(" deuterium "+ deu1);
+					System.out.print(" energy "+ energy1);
+		    		System.out.println("upgrade energy");
+		    		 
+		    		break;
+		    	};
+		    	
+		    	break;
+		    };
+		    
+		    // Check warehouse
+		    
+		    if (map.findElement(By .id("resources_metal")).getAttribute("class").contains("overmark")) {
+		    	if (map.findElements(By .xpath("//*[@id=\"producers\"]/li[8]/span/button")).size()!=0) {
+		    		map.findElement(By .xpath("//*[@id=\"producers\"]/li[8]/span/button")).click();
+		    		
+		    		System.out.print("EARTH" +dem);
+		    		System.out.print(" metal "+metal1);
+					System.out.print(" crystal "+ crystal1);
+					System.out.print(" deuterium "+ deu1);
+					System.out.print(" energy "+ energy1);
+		    		System.out.println("upgrade metal storage ");
+		    		break;
+		    	}  else {
+			    	
+			    	break;
+			    }
+		    };
+		    
+		    if (map.findElement(By .id("resources_crystal")).getAttribute("class").contains("overmark")) {
+		    	if (map.findElements(By .xpath("//*[@id=\"producers\"]/li[9]/span/button")).size()!=0) {
+		    		map.findElement(By .xpath("//*[@id=\"producers\"]/li[9]/span/button")).click();
+		    		
+		    		System.out.print("EARTH" +dem);
+		    		System.out.print(" metal "+metal1);
+					System.out.print(" crystal "+ crystal1);
+					System.out.print(" deuterium "+ deu1);
+					System.out.print(" energy "+ energy1);
+		    		System.out.println("upgrade crystal storage ");
+		    		break;
+		    	} else {
+			    	
+			    	break;
+			    }
+		    } 
+		    
+		    if (map.findElement(By .id("resources_deuterium")).getAttribute("class").contains("overmark")) {
+		    	if (map.findElements(By .xpath("//*[@id=\"producers\"]/li[10]/span/button")).size()!=0) {
+		    		map.findElement(By .xpath("//*[@id=\"producers\"]/li[10]/span/button")).click();
+		    		
+		    		System.out.print("EARTH" +dem);
+		    		System.out.print(" metal "+metal1);
+					System.out.print(" crystal "+ crystal1);
+					System.out.print(" deuterium "+ deu1);
+					System.out.print(" energy "+ energy1);
+		    		System.out.println("upgrade deuterium storage ");
+		    		break;
+		    	} else {
+			    	
+			    	break;
+			    }
+		    } 
+		  	
+		    
+		    
+		    
+		    // Upgrade metal/crystal
+		    if ((energy1 >= 0 )&&(metal1<crystal1+2)&&(crystal1<deu1+4)) {
+		    	if (map.findElements(By .xpath("//*[@id=\"producers\"]/li[1]/span/button")).size()!=0) {
+		    		map.findElement(By .xpath("//*[@id=\"producers\"]/li[1]/span/button")).click();
+		    	
+		    		
+		    		System.out.print("EARTH" +dem);
+		    		System.out.print(" metal "+metal1);
+					System.out.print(" crystal "+ crystal1);
+					System.out.print(" deuterium "+ deu1);
+					System.out.print(" energy "+ energy1);
+		    		System.out.println("upgrade metal ");
+		    		break;
+		    		
+		    	} 
+		    };
+		    
+		    if ((energy1 >= 0 )&&(metal1>= crystal1+2)&&(crystal1<deu1+4)) {
+		    	if (map.findElements(By .xpath("//*[@id=\"producers\"]/li[2]/span/button")).size()!=0) {
+		    		map.findElement(By .xpath("//*[@id=\"producers\"]/li[2]/span/button")).click();
+
+		    		
+		    		System.out.print("EARTH" +dem);
+		    		System.out.print(" metal "+metal1);
+					System.out.print(" crystal "+ crystal1);
+					System.out.print(" deuterium "+ deu1);
+					System.out.print(" energy "+ energy1);
+		    		System.out.println("upgrade crystal");
+		    		break;
+		    	}  else {
+		    	
+		    		
+		    		break;
+		    		
+		    	}
+		    };
+		    
+		    if (crystal1>=deu1+4) {
+		    	if (map.findElements(By .xpath("//*[@id=\"producers\"]/li[3]/span/button")).size()!=0) {
+		    		map.findElement(By .xpath("//*[@id=\"producers\"]/li[3]/span/button")).click();
+
+		    		
+		    		System.out.print("EARTH" +dem);
+		    		System.out.print(" metal "+metal1);
+					System.out.print(" crystal "+ crystal1);
+					System.out.print(" deuterium "+ deu1);
+					System.out.print(" energy "+ energy1);
+		    		System.out.println("upgrade deu");
+		    		break;
+		    	}  else {
+		    	
+		    		
+		    		break;
+		    		
+		    	}
+		    };
+		    
+		    
+		    
+		    
+		    
+		    } 
+	    };
+			
+			
+		
+		
+	
+	}}
+		
+
+
+			
+	
+		
+
+}}
